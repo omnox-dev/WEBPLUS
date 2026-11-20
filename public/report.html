@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Website Health Report — WEB PLUS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body style="background:var(--bg2);">
+
+  <!-- Header -->
+  <header class="no-print">
+    <div class="wrap">
+      <nav aria-label="Main">
+        <a href="/" class="logo">
+          <span class="mark">W</span>
+          <span>WEB <strong>PLUS</strong></span>
+        </a>
+        <div class="links">
+          <a href="/">← Back to Home</a>
+          <a href="/admin">Team Admin</a>
+        </div>
+        <div class="nav-actions">
+          <button class="btn ghost sm" onclick="window.print()">
+            <svg class="i" viewBox="0 0 24 24"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2M6 14h12v8H6z"/></svg>
+            Print / Save PDF
+          </button>
+          <a href="#bookSection" class="btn primary sm">Book Fix Package</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Report Container -->
+  <main class="wrap" style="padding: 40px 24px 80px;">
+    
+    <!-- Report Top Summary Card -->
+    <div class="card" style="margin-bottom: 24px; padding: 32px; border-radius: 20px;">
+      <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:16px; border-bottom:1px solid var(--line); padding-bottom:20px; margin-bottom:24px;">
+        <div>
+          <span class="eyebrow">15-POINT WEBSITE HEALTH REPORT</span>
+          <h1 style="font-size:32px; margin-bottom:6px;" id="reportDomain">Loading report...</h1>
+          <div style="display:flex; gap:16px; font-size:13.5px; color:var(--mute); flex-wrap:wrap;">
+            <span>Target URL: <strong id="reportUrl" style="color:var(--ink);">-</strong></span>
+            <span>Scanned: <strong id="reportDate" style="color:var(--ink);">-</strong></span>
+            <span>Response Latency: <strong id="reportLatency" style="color:var(--ink);">-</strong></span>
+            <span>Page Size: <strong id="reportSize" style="color:var(--ink);">-</strong></span>
+          </div>
+        </div>
+        <div class="no-print" style="display:flex; gap:10px;">
+          <button class="btn ghost sm" id="copyShareBtn">
+            <svg class="i" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg>
+            Copy Share Link
+          </button>
+        </div>
+      </div>
+
+      <!-- Health Score & Counts Row -->
+      <div class="grid2" style="align-items:center;">
+        <div style="display:flex; gap:26px; align-items:center;">
+          <div class="ring" id="scoreRing" style="width:140px; height:140px;">
+            <div style="width:110px; height:110px;">
+              <b style="font-size:38px;" id="scoreValue">0</b>
+              <small>Score / 100</small>
+            </div>
+          </div>
+          <div>
+            <div style="font-size:20px; font-weight:800; margin-bottom:6px;" id="scoreVerdict">Evaluating...</div>
+            <p style="font-size:14px; color:var(--mute); line-height:1.5;" id="reportSummary">Gathering findings across links, contact, content, UX, and trust.</p>
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:12px;">
+          <div class="card" style="background:var(--badb); border-color:rgba(239,68,68,0.2); padding:16px; text-align:center;">
+            <div style="font-size:28px; font-weight:800; color:var(--bad);" id="countCritical">0</div>
+            <div style="font-size:12.5px; font-weight:700; color:var(--bad);">Critical Issues</div>
+            <small style="color:var(--mute); font-size:11px;">Immediate risk</small>
+          </div>
+          <div class="card" style="background:var(--warnb); border-color:rgba(245,158,11,0.2); padding:16px; text-align:center;">
+            <div style="font-size:28px; font-weight:800; color:var(--warn);" id="countNeeds">0</div>
+            <div style="font-size:12.5px; font-weight:700; color:var(--warn);">Improvements</div>
+            <small style="color:var(--mute); font-size:11px;">Needs polish</small>
+          </div>
+          <div class="card" style="background:var(--okb); border-color:rgba(16,185,129,0.2); padding:16px; text-align:center;">
+            <div style="font-size:28px; font-weight:800; color:var(--ok);" id="countGood">0</div>
+            <div style="font-size:12.5px; font-weight:700; color:var(--ok);">Passed Checks</div>
+            <small style="color:var(--mute); font-size:11px;">Well configured</small>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Prioritised Action Plan -->
+    <div class="card" style="margin-bottom: 24px; padding: 28px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; flex-wrap:wrap; gap:10px;">
+        <div>
+          <h2 style="font-size:22px;">Prioritised Action Plan</h2>
+          <p style="color:var(--mute); font-size:13.5px;">Recommended fixes ordered from highest business impact to minor enhancements.</p>
+        </div>
+        <div style="display:flex; gap:8px;" class="no-print">
+          <button class="btn sm ghost filter-btn active" data-filter="All">All Issues</button>
+          <button class="btn sm ghost filter-btn" data-filter="Critical">Critical Only</button>
+          <button class="btn sm ghost filter-btn" data-filter="Needs">Needs Improvement</button>
+          <button class="btn sm ghost filter-btn" data-filter="Good">Passed</button>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th style="width:28%;">Point & Category</th>
+              <th style="width:14%;">Status</th>
+              <th style="width:28%;">What Was Found</th>
+              <th style="width:30%;">Recommended Action</th>
+            </tr>
+          </thead>
+          <tbody id="actionPlanBody">
+            <tr><td colspan="4" style="text-align:center; padding:30px;">Loading checks...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- The 5 Category Deep-Dive -->
+    <div class="card" style="margin-bottom: 24px; padding: 28px;">
+      <h2 style="font-size:22px; margin-bottom:16px;">The 5 Pillars Breakdown (15 Points)</h2>
+      <div id="categoriesList" style="display:grid; gap:16px;">
+        <!-- Injected via JavaScript -->
+      </div>
+    </div>
+
+    <!-- Book Fix Package Section -->
+    <div class="card no-print" id="bookSection" style="padding: 34px; background: linear-gradient(135deg, #0a1f44, #1e3a8a); color:#fff; border-radius:24px;">
+      <div class="grid2" style="align-items:center;">
+        <div>
+          <span class="eyebrow" style="color:#60a5fa;">NEXT STEP</span>
+          <h2 style="color:#fff; margin-bottom:10px;">Turn This Report Into Real Revenue.</h2>
+          <p style="color:#bfdbfe; font-size:15px; line-height:1.6;">Don't let broken links or unclear navigation lose customers to your competitors. Book our <strong>Correction Package</strong> and our team will implement every recommended fix directly on your website.</p>
+        </div>
+
+        <div class="card" style="background:#fff; color:var(--ink); padding:24px; border-radius:16px;">
+          <h3 style="margin-bottom:12px;">Request Correction Service</h3>
+          <form id="reportLeadForm">
+            <input type="hidden" name="auditId" id="leadAuditId">
+            <input type="hidden" name="site" id="leadSite">
+            <label>Your Name *</label>
+            <input type="text" class="f" name="name" required placeholder="Your full name">
+
+            <label>Phone / WhatsApp *</label>
+            <input type="tel" class="f" name="phone" required placeholder="+91 98220 12345">
+
+            <label>Email *</label>
+            <input type="email" class="f" name="email" required placeholder="you@business.in">
+
+            <label>Package</label>
+            <select class="f" name="package">
+              <option value="Correction Package" selected>Correction Package (We fix everything for you)</option>
+              <option value="Professional">Professional (Detailed Roadmap & Consultation)</option>
+            </select>
+
+            <button type="submit" class="btn primary" id="reportLeadBtn" style="width:100%; justify-content:center;">Book Fix Package</button>
+            <div id="reportLeadMsg" style="margin-top:12px; font-size:13.5px; display:none;"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <script src="/js/report.js"></script>
+</body>
+</html>

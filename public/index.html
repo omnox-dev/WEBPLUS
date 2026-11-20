@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>WEB PLUS — 15-Point Website Health Check for Small Businesses</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+  <!-- Clean, Professional Header -->
+  <header>
+    <div class="wrap">
+      <nav aria-label="Main">
+        <a href="#home" class="logo">
+          <span class="mark">W</span>
+          <span>WEB <strong>PLUS</strong></span>
+        </a>
+        <div class="links">
+          <a href="#home">Home</a>
+          <a href="#audit-results">Live Audit</a>
+          <a href="#framework">15-Point Framework</a>
+          <a href="#pricing">Services & Pricing</a>
+          <a href="#booking">Book Correction</a>
+        </div>
+        <div class="nav-actions">
+          <div id="authNavLoggedOut" style="display:flex; gap:8px; align-items:center;">
+            <button class="btn ghost sm" id="openSignInBtn">Sign In</button>
+            <button class="btn primary sm" id="openSignUpBtn">Get Started</button>
+          </div>
+          <div id="authNavLoggedIn" style="display:none; gap:10px; align-items:center;">
+            <span style="font-size:13.5px; font-weight:600; color:var(--ink);" id="authUserName">User</span>
+            <button class="btn ghost sm" id="signOutBtn" style="padding:5px 10px; font-size:12px;">Sign Out</button>
+          </div>
+          <a href="/admin" class="btn ghost sm" title="Internal Team Portal">Team Portal →</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="home">
+
+    <!-- Hero Section -->
+    <section class="hero" style="padding: 72px 0 60px; background: radial-gradient(800px 420px at 80% -10%, rgba(37,99,235,0.12), transparent 70%);">
+      <div class="wrap grid2" style="align-items:center;">
+        <div>
+          <span class="eyebrow">A HEALTHIER WEBSITE · A CLEARER CUSTOMER JOURNEY</span>
+          <h1>Your Website Is Your First Impression. <span>Make It Count.</span></h1>
+          <p class="lead">Find what’s broken, outdated, or confusing on your website. Get a clean 15-point health score with actionable recommendations to stop losing customer inquiries.</p>
+
+          <!-- Live Scan Input Box -->
+          <div id="scan-form-box">
+            <form class="urlbox" id="scanForm">
+              <input type="text" id="targetUrl" placeholder="Enter website (e.g. artisanbakery.in)" required autocomplete="url">
+              <button class="btn primary" type="submit" id="scanBtn">
+                <svg class="i" viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                Audit Website
+              </button>
+            </form>
+
+            <!-- Quick Demo Presets -->
+            <div style="display:flex; gap:8px; align-items:center; margin-top:14px; flex-wrap:wrap;">
+              <span style="font-size:12.5px; color:var(--mute); font-weight:600;">Try instant demo:</span>
+              <button class="preset-chip" data-url="sample-bakery.example">Sample Bakery Demo</button>
+              <button class="preset-chip" data-url="https://artisanbakery.in">Artisan Bakery</button>
+              <button class="preset-chip" data-url="https://raodentalclinic.com">Dental Clinic</button>
+            </div>
+
+            <!-- In-page Live Scan Progress -->
+            <div class="scan-progress-box" id="scanProgressBox">
+              <div style="display:flex; justify-content:space-between; align-items:center; font-size:13.5px; font-weight:700;">
+                <span id="scanStatusTitle">Inspecting Website...</span>
+                <span id="scanPercent">20%</span>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+              </div>
+              <div style="font-size:12.5px; color:var(--mute);" id="scanStatusDetail">Testing server connection & HTTP headers...</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero Live Card Preview -->
+        <div>
+          <div class="card" style="border-radius:22px; padding:28px; box-shadow: var(--sh-lg); position:relative;">
+            <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--line); padding-bottom:12px; margin-bottom:18px;">
+              <div style="display:flex; gap:6px; align-items:center;">
+                <span style="width:10px; height:10px; border-radius:50%; background:#ef4444;"></span>
+                <span style="width:10px; height:10px; border-radius:50%; background:#f59e0b;"></span>
+                <span style="width:10px; height:10px; border-radius:50%; background:#10b981;"></span>
+                <span style="margin-left:8px; font-size:13px; font-weight:600; color:var(--mute);" id="heroPreviewDomain">sample-bakery.example</span>
+              </div>
+              <span class="badge Needs" id="heroPreviewBadge">Sample Audit</span>
+            </div>
+
+            <div style="display:flex; gap:22px; align-items:center;">
+              <div class="ring" id="heroRing" style="--p:72;">
+                <div>
+                  <b id="heroScoreVal">72</b>
+                  <small>Score / 100</small>
+                </div>
+              </div>
+              <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; flex:1;">
+                <div class="card" style="padding:10px 12px; border-radius:12px; background:var(--badb); border-color:rgba(220,38,38,0.15);">
+                  <small style="color:var(--bad); font-size:11px; font-weight:700;">Critical Issues</small>
+                  <div style="font-size:20px; font-weight:800; color:var(--bad);" id="heroCritCount">3</div>
+                </div>
+                <div class="card" style="padding:10px 12px; border-radius:12px; background:var(--warnb); border-color:rgba(217,119,6,0.15);">
+                  <small style="color:var(--warn); font-size:11px; font-weight:700;">Improvements</small>
+                  <div style="font-size:20px; font-weight:800; color:var(--warn);" id="heroNeedsCount">5</div>
+                </div>
+                <div class="card" style="padding:10px 12px; border-radius:12px; background:var(--okb); border-color:rgba(5,150,105,0.15);">
+                  <small style="color:var(--ok); font-size:11px; font-weight:700;">Passed Checks</small>
+                  <div style="font-size:20px; font-weight:800; color:var(--ok);" id="heroGoodCount">7</div>
+                </div>
+                <div class="card" style="padding:10px 12px; border-radius:12px; background:var(--bg2);">
+                  <small style="color:var(--mute); font-size:11px; font-weight:700;">Total Checks</small>
+                  <div style="font-size:20px; font-weight:800; color:var(--blue);">15</div>
+                </div>
+              </div>
+            </div>
+
+            <div style="margin-top:18px; border-top:1px solid var(--line); padding-top:14px;">
+              <div style="display:flex; justify-content:space-between; align-items:center;">
+                <span style="font-size:13px; color:var(--mute);">Ready to view the full breakdown?</span>
+                <a href="#audit-results" class="btn sm ghost">View Details ↓</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LIVE AUDIT RESULTS SECTION (Seamless In-Page Workflow) -->
+    <section id="audit-results" class="alt" style="padding: 60px 0 80px;">
+      <div class="wrap">
+        
+        <div style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:16px; margin-bottom:28px;">
+          <div>
+            <span class="eyebrow">DIAGNOSTIC REPORT</span>
+            <h2 id="reportDomainTitle">Audit Report: sample-bakery.example</h2>
+            <p class="lead" id="reportSummaryText" style="margin-top:6px; font-size:15.5px;">
+              Comprehensive 15-point diagnostic across Links, Contact, Content, UX, and Trust.
+            </p>
+          </div>
+          <div class="no-print" style="display:flex; gap:10px; flex-wrap:wrap;">
+            <button class="btn ghost sm" onclick="window.print()">
+              <svg class="i" viewBox="0 0 24 24"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2M6 14h12v8H6z"/></svg>
+              Print / Save PDF
+            </button>
+            <a href="#booking" class="btn primary sm" id="reportBookBtn">
+              Book Correction Package
+            </a>
+          </div>
+        </div>
+
+        <!-- Pillar Explorer Tabs (The 5 Pillars) -->
+        <div class="card" style="margin-bottom:24px; padding:24px;">
+          <div style="font-size:12px; font-weight:700; text-transform:uppercase; color:var(--mute); letter-spacing:0.08em; margin-bottom:14px;">
+            The 5 Pillars (3 Checks Each)
+          </div>
+          <div class="tabs-nav" id="pillarTabs">
+            <!-- Injected by JS -->
+          </div>
+          <div id="pillarContent" style="display:grid; gap:10px; margin-top:16px;">
+            <!-- Injected by JS -->
+          </div>
+        </div>
+
+        <!-- Prioritised Action Plan Table -->
+        <div class="card" style="padding:26px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; flex-wrap:wrap; gap:12px;">
+            <div>
+              <h3 style="font-size:20px;">Prioritised Action Plan</h3>
+              <p style="font-size:13.5px; color:var(--mute);">High-impact friction points ranked by urgency.</p>
+            </div>
+            <div style="display:flex; gap:8px;" class="no-print">
+              <button class="preset-chip active" data-filter="All">All Checks</button>
+              <button class="preset-chip" data-filter="Critical">Critical (3)</button>
+              <button class="preset-chip" data-filter="Needs">Needs Polish (5)</button>
+              <button class="preset-chip" data-filter="Good">Passed (7)</button>
+            </div>
+          </div>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th style="width:26%;">Health Check</th>
+                  <th style="width:14%;">Status</th>
+                  <th style="width:30%;">Diagnostic Finding</th>
+                  <th style="width:30%;">Recommended Action</th>
+                </tr>
+              </thead>
+              <tbody id="actionPlanRows">
+                <!-- Injected by JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Why Small Website Problems Cost Real Business (Problem Section) -->
+    <section id="framework">
+      <div class="wrap">
+        <div class="head center">
+          <span class="eyebrow">THE 15-POINT METHOD</span>
+          <h2>A website can look fine — and still quietly lose customers.</h2>
+          <p class="lead">Most owners don't realize that minor technical and content friction points make visitors bounce to competitors.</p>
+        </div>
+
+        <div class="grid4">
+          <div class="card">
+            <div style="font-size:30px; margin-bottom:10px;">🔗</div>
+            <h3 style="font-size:17px; margin-bottom:6px;">Broken Links</h3>
+            <p style="color:var(--mute); font-size:14px;">Dead menus, 404 pages, or unclickable buttons stop customers right when they are ready to order.</p>
+          </div>
+          <div class="card">
+            <div style="font-size:30px; margin-bottom:10px;">📞</div>
+            <h3 style="font-size:17px; margin-bottom:6px;">Missing Click-to-Call</h3>
+            <p style="color:var(--mute); font-size:14px;">If a mobile visitor cannot tap your phone number to dial in 1 click, 60% will hit 'back' to Google.</p>
+          </div>
+          <div class="card">
+            <div style="font-size:30px; margin-bottom:10px;">⏰</div>
+            <h3 style="font-size:17px; margin-bottom:6px;">Outdated Details</h3>
+            <p style="color:var(--mute); font-size:14px;">Old holiday hours or an outdated copyright notice makes customers assume the business is inactive.</p>
+          </div>
+          <div class="card">
+            <div style="font-size:30px; margin-bottom:10px;">🛡️</div>
+            <h3 style="font-size:17px; margin-bottom:6px;">Missing Trust Signals</h3>
+            <p style="color:var(--mute); font-size:14px;">Without Google reviews, SSL encryption, and clear guarantees, visitors hesitate to submit inquiries.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services & Pricing Packages -->
+    <section class="alt" id="pricing">
+      <div class="wrap">
+        <div class="head center">
+          <span class="eyebrow">SERVICE PACKAGES</span>
+          <h2>Clear options tailored to your website.</h2>
+          <p class="lead">From automated diagnostic reports to complete hands-on fix implementation.</p>
+        </div>
+
+        <div class="grid3">
+          <!-- Tier 1 -->
+          <div class="card">
+            <h3 style="font-size:18px; margin-bottom:4px;">Starter</h3>
+            <div style="font-size:26px; font-weight:800; margin:12px 0 6px;">Free Instant Scan</div>
+            <p style="color:var(--mute); font-size:13.5px; margin-bottom:20px;">A clear baseline picture of what needs fixing.</p>
+            <ul style="list-style:none; display:grid; gap:10px; font-size:13.5px; margin-bottom:24px;">
+              <li>✓ Automated 15-point health check</li>
+              <li>✓ 0–100 health score breakdown</li>
+              <li>✓ Prioritised issues list</li>
+              <li>✓ Online shareable link</li>
+            </ul>
+            <a href="#scan-form-box" class="btn ghost" style="width:100%; justify-content:center;">Run Free Scan</a>
+          </div>
+
+          <!-- Tier 2 -->
+          <div class="card" style="border-color:var(--blue); box-shadow:0 12px 30px -8px rgba(37,99,235,0.25); position:relative;">
+            <span class="badge" style="position:absolute; top:-12px; right:20px; background:var(--blue); color:#fff;">MOST POPULAR</span>
+            <h3 style="font-size:18px; margin-bottom:4px;">Professional</h3>
+            <div style="font-size:26px; font-weight:800; margin:12px 0 6px;">Consultation Package</div>
+            <p style="color:var(--mute); font-size:13.5px; margin-bottom:20px;">Step-by-step roadmap & manual review.</p>
+            <ul style="list-style:none; display:grid; gap:10px; font-size:13.5px; margin-bottom:24px;">
+              <li>✓ Everything in Starter</li>
+              <li>✓ Manual verification by our audit team</li>
+              <li>✓ Tailored fix roadmap for your web designer</li>
+              <li>✓ Mobile UX & Conversion optimization plan</li>
+            </ul>
+            <a href="#booking" class="btn primary select-plan" data-plan="Professional" style="width:100%; justify-content:center;">Book Full Audit</a>
+          </div>
+
+          <!-- Tier 3 -->
+          <div class="card">
+            <h3 style="font-size:18px; margin-bottom:4px;">Correction Package</h3>
+            <div style="font-size:26px; font-weight:800; margin:12px 0 6px;">Full Implementation</div>
+            <p style="color:var(--mute); font-size:13.5px; margin-bottom:20px;">We put the fixes directly in place for you.</p>
+            <ul style="list-style:none; display:grid; gap:10px; font-size:13.5px; margin-bottom:24px;">
+              <li>✓ Everything in Professional</li>
+              <li>✓ We fix broken links & update opening hours</li>
+              <li>✓ Add Google Maps pin & click-to-call buttons</li>
+              <li>✓ 30-day post-correction health audit</li>
+            </ul>
+            <a href="#booking" class="btn ghost select-plan" data-plan="Correction Package" style="width:100%; justify-content:center;">Request Correction</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Unified Booking & Lead Capture Section -->
+    <section id="booking" style="padding: 70px 0 90px;">
+      <div class="wrap grid2" style="align-items:start;">
+        <div>
+          <span class="eyebrow">TAKE ACTION</span>
+          <h2>Turn Your Report Into Real Revenue.</h2>
+          <p class="lead">Don't let broken paths or outdated details cost your business another customer. Select your package and our team will get in touch.</p>
+
+          <div style="margin-top:28px; display:grid; gap:16px;">
+            <div style="display:flex; gap:12px; align-items:flex-start;">
+              <span class="badge Good" style="margin-top:2px;">Fast Reply</span>
+              <div>
+                <strong>24-Hour Review Turnaround</strong>
+                <p style="font-size:13px; color:var(--mute);">We review your site findings and reply with exact next steps.</p>
+              </div>
+            </div>
+            <div style="display:flex; gap:12px; align-items:flex-start;">
+              <span class="badge" style="background:var(--soft); color:var(--blue); margin-top:2px;">Direct Support</span>
+              <div>
+                <strong>Handled by the Web Plus Team</strong>
+                <p style="font-size:13px; color:var(--mute);">Directly coordinated by Piyush, Prachi & the audit team.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Clean Lead Form -->
+        <div class="card" style="padding:28px;">
+          <h3 style="margin-bottom:16px;">Request Service / Correction</h3>
+          <form id="bookingLeadForm">
+            <input type="hidden" id="bookingAuditId" name="auditId">
+
+            <label>Your Name *</label>
+            <input type="text" class="f" name="name" required placeholder="e.g. Ramesh Joshi">
+
+            <label>Email Address *</label>
+            <input type="email" class="f" name="email" required placeholder="e.g. ramesh@artisanbakery.in">
+
+            <label>Phone / WhatsApp Number</label>
+            <input type="tel" class="f" name="phone" placeholder="e.g. +91 98220 12345">
+
+            <label>Website URL</label>
+            <input type="text" class="f" id="bookingSite" name="site" placeholder="e.g. https://artisanbakery.in">
+
+            <label>Selected Package</label>
+            <select class="f" id="bookingPackage" name="package">
+              <option value="Correction Package" selected>Correction Package (We fix everything for you)</option>
+              <option value="Professional">Professional (Detailed Roadmap & Consultation)</option>
+              <option value="Starter">Starter (Free 15-Point Scan)</option>
+            </select>
+
+            <label>Notes / Specific Website Problems</label>
+            <textarea class="f" name="notes" rows="3" placeholder="Tell us if you have any immediate issues (e.g. broken checkout, wrong phone number)."></textarea>
+
+            <button type="submit" class="btn primary" id="bookingSubmitBtn" style="width:100%; justify-content:center;">
+              Submit Request
+            </button>
+            <div id="bookingMsg" style="margin-top:14px; font-size:13.5px; display:none;"></div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Clean Professional Footer -->
+  <footer style="border-top:1px solid var(--line); padding:40px 0; background:var(--bg2);">
+    <div class="wrap" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:20px;">
+      <div>
+        <div class="logo">
+          <span class="mark">W</span>
+          <span>WEB <strong>PLUS</strong></span>
+        </div>
+        <p style="font-size:13px; color:var(--mute); margin-top:6px;">
+          A healthier website. A clearer customer journey.
+        </p>
+      </div>
+      <div style="display:flex; gap:20px; align-items:center; flex-wrap:wrap;">
+        <a href="#home" style="color:var(--mute); font-size:13.5px;">Home</a>
+        <a href="#audit-results" style="color:var(--mute); font-size:13.5px;">Live Audit</a>
+        <a href="#pricing" style="color:var(--mute); font-size:13.5px;">Pricing</a>
+        <a href="/admin" style="color:var(--blue); font-size:13.5px; font-weight:700;">Team Operations Portal →</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- User Authentication Modal (Sign In & Sign Up) -->
+  <div class="modal-overlay" id="authModal">
+    <div class="modal-card" style="max-width: 440px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:18px;">
+        <h3 id="authModalTitle" style="font-size:20px;">Sign In to WEB PLUS</h3>
+        <button id="closeAuthModalBtn" style="border:0; background:none; font-size:22px; cursor:pointer; color:var(--mute);">&times;</button>
+      </div>
+
+      <div class="tabs-nav" style="margin-bottom:18px;">
+        <button class="tab-btn active" id="tabAuthLogin" style="flex:1;">Sign In</button>
+        <button class="tab-btn" id="tabAuthSignup" style="flex:1;">Create Account</button>
+      </div>
+
+      <p id="authNotice" style="font-size:13px; color:var(--blue); background:var(--soft); padding:8px 12px; border-radius:8px; margin-bottom:14px; display:none;">
+        Please sign in or create an account to run your 15-point audit.
+      </p>
+
+      <!-- Sign In Form -->
+      <form id="signInForm">
+        <label>Email Address</label>
+        <input type="email" class="f" name="email" required placeholder="you@business.in" autocomplete="email">
+
+        <label>Password</label>
+        <input type="password" class="f" name="password" required placeholder="••••••••" autocomplete="current-password">
+
+        <button type="submit" class="btn primary" id="signInSubmitBtn" style="width:100%; justify-content:center; margin-top:6px;">
+          Sign In & Run Audit
+        </button>
+      </form>
+
+      <!-- Sign Up Form -->
+      <form id="signUpForm" style="display:none;">
+        <label>Your Full Name</label>
+        <input type="text" class="f" name="name" required placeholder="Ramesh Joshi" autocomplete="name">
+
+        <label>Email Address</label>
+        <input type="email" class="f" name="email" required placeholder="ramesh@artisanbakery.in" autocomplete="email">
+
+        <label>Password (at least 6 characters)</label>
+        <input type="password" class="f" name="password" required minlength="6" placeholder="••••••••" autocomplete="new-password">
+
+        <button type="submit" class="btn primary" id="signUpSubmitBtn" style="width:100%; justify-content:center; margin-top:6px;">
+          Create Free Account & Audit
+        </button>
+      </form>
+
+      <div id="authErrMsg" style="margin-top:12px; font-size:13px; color:var(--bad); display:none;"></div>
+    </div>
+  </div>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>

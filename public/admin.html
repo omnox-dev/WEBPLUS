@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>WEB PLUS — Team Operations & Experiment Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/styles.css">
+  <style>
+    .matrix-box {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 12px;
+      height: 280px;
+      position: relative;
+    }
+    .matrix-cell {
+      padding: 16px;
+      border-radius: 14px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border: 2px dashed transparent;
+      transition: all 0.3s;
+    }
+    .matrix-cell.active-verdict {
+      border: 3px solid var(--blue);
+      box-shadow: 0 0 20px rgba(37,99,235,0.3);
+      transform: scale(1.02);
+    }
+    .m-continue { background: rgba(16, 185, 129, 0.12); color: #065f46; }
+    .m-modify-sol { background: rgba(245, 158, 11, 0.12); color: #92400e; }
+    .m-modify-cust { background: rgba(59, 130, 246, 0.12); color: #1e40af; }
+    .m-kill { background: rgba(239, 68, 68, 0.12); color: #991b1b; }
+    .nav-tab {
+      padding: 10px 18px;
+      font-size: 14px;
+      font-weight: 600;
+      border-radius: 10px;
+      cursor: pointer;
+      border: 1px solid transparent;
+      background: var(--card);
+      color: var(--mute);
+    }
+    .nav-tab.active {
+      background: var(--blue);
+      color: #fff;
+    }
+  </style>
+</head>
+<body style="background:var(--bg2);">
+
+  <!-- Header -->
+  <header>
+    <div class="wrap">
+      <nav aria-label="Main">
+        <a href="/" class="logo">
+          <span class="mark">W</span>
+          <span>WEB <strong>PLUS</strong> <span style="font-size:12px; font-weight:700; color:var(--blue); margin-left:6px; background:var(--soft); padding:3px 8px; border-radius:6px;">TEAM OPERATIONS</span></span>
+        </a>
+        <div class="links">
+          <a href="/">Client Website</a>
+          <a href="/report?id=sample">Sample Report</a>
+        </div>
+        <div class="nav-actions">
+          <a href="/" class="btn ghost sm">← Back to Site</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Team Roles Ribbon (Slide 11) -->
+  <div style="background:var(--card); border-bottom:1px solid var(--line); padding:16px 0;">
+    <div class="wrap">
+      <div style="font-size:12px; font-weight:700; text-transform:uppercase; color:var(--mute); letter-spacing:0.08em; margin-bottom:10px;">
+        Workshop 3 Team Allocations (Pune Campus · 20 Nov 2026)
+      </div>
+      <div class="grid4" style="grid-template-columns: repeat(5, 1fr); gap:12px;">
+        <div class="card" style="padding:12px 14px; border-radius:12px;">
+          <div style="font-weight:700; font-size:13.5px;">Parth Bhurrak</div>
+          <small style="color:var(--mute); font-size:11.5px;">Presentation & Final Deck</small>
+        </div>
+        <div class="card" style="padding:12px 14px; border-radius:12px; border-color:var(--blue);">
+          <div style="font-weight:700; font-size:13.5px; color:var(--blue);">Piyush Yashvant Shinde</div>
+          <small style="color:var(--mute); font-size:11.5px;">Customer Outreach & Sales</small>
+        </div>
+        <div class="card" style="padding:12px 14px; border-radius:12px;">
+          <div style="font-weight:700; font-size:13.5px;">Shrey Sharma</div>
+          <small style="color:var(--mute); font-size:11.5px;">Customer Insights & Research</small>
+        </div>
+        <div class="card" style="padding:12px 14px; border-radius:12px;">
+          <div style="font-weight:700; font-size:13.5px;">Prachi Mourya</div>
+          <small style="color:var(--mute); font-size:11.5px;">15-Point Audits & Findings</small>
+        </div>
+        <div class="card" style="padding:12px 14px; border-radius:12px;">
+          <div style="font-weight:700; font-size:13.5px;">Netra Nirav Kapadia</div>
+          <small style="color:var(--mute); font-size:11.5px;">Outreach Tracker & Proof</small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <main class="wrap" style="padding:32px 24px 80px;">
+
+    <!-- Sub-navigation Tabs -->
+    <div style="display:flex; gap:10px; margin-bottom:24px; flex-wrap:wrap;">
+      <button class="nav-tab active" data-tab="tab-experiment">📊 Experiment & Decision Matrix (Slides 4-9)</button>
+      <button class="nav-tab" data-tab="tab-discovery">🗣️ 15-Conversation Tracker</button>
+      <button class="nav-tab" data-tab="tab-leads">💼 Booked Leads CRM</button>
+      <button class="nav-tab" data-tab="tab-audits">🔍 Scanned Audits Log</button>
+    </div>
+
+    <!-- TAB 1: Experiment & Decision Matrix -->
+    <section id="tab-experiment" class="tab-pane">
+      
+      <!-- Top Funnel KPI Cards (Slide 8) -->
+      <div class="grid4" style="margin-bottom:24px;">
+        <div class="card">
+          <small style="color:var(--mute); font-weight:700; text-transform:uppercase; font-size:11px;">1. SAW IT (Reach)</small>
+          <div style="font-size:32px; font-weight:800; margin:6px 0;" id="kpiReach">0</div>
+          <small style="color:var(--mute);">Target: 50+ across 2+ channels</small>
+        </div>
+        <div class="card">
+          <small style="color:var(--mute); font-weight:700; text-transform:uppercase; font-size:11px;">2. STOPPED / ASKED (Interest)</small>
+          <div style="font-size:32px; font-weight:800; margin:6px 0; color:var(--blue);" id="kpiStopped">0</div>
+          <small style="color:var(--mute);">Active questions & interest</small>
+        </div>
+        <div class="card">
+          <small style="color:var(--mute); font-weight:700; text-transform:uppercase; font-size:11px;">3. COMMITTED (Bookings)</small>
+          <div style="font-size:32px; font-weight:800; margin:6px 0; color:var(--ok);" id="kpiCommitted">0</div>
+          <small style="color:var(--mute);">Pass Mark: <span id="kpiPassMark">8</span></small>
+        </div>
+        <div class="card">
+          <small style="color:var(--mute); font-weight:700; text-transform:uppercase; font-size:11px;">PAIN COUNT (Validated)</small>
+          <div style="font-size:32px; font-weight:800; margin:6px 0; color:#8b5cf6;" id="kpiPainCount">0 / 15</div>
+          <small style="color:var(--mute);">Had pain AND tried fixing it</small>
+        </div>
+      </div>
+
+      <!-- Slide 9: Evidence & Decision Matrix -->
+      <div class="grid2" style="align-items:start; margin-bottom:24px;">
+        <div class="card" style="padding:26px;">
+          <span class="eyebrow">Slide 09 / Decision Matrix</span>
+          <h2 style="font-size:22px; margin-bottom:12px;">Evidence & Decision Quadrant</h2>
+          <p style="font-size:13.5px; color:var(--mute); margin-bottom:20px;">
+            The matrix uses two numbers: <strong>Pain Count (out of 15)</strong> and <strong>Commitments &divide; Pass Mark</strong>.
+          </p>
+
+          <div class="matrix-box">
+            <!-- Top Left: Modify Solution -->
+            <div class="matrix-cell m-modify-sol" id="quadModifySol">
+              <strong>MODIFY THE SOLUTION</strong>
+              <small>High Pain, Low Commitments. The problem is real, but the offer/price must change.</small>
+            </div>
+            <!-- Top Right: Continue -->
+            <div class="matrix-cell m-continue" id="quadContinue">
+              <strong>CONTINUE (Green Light)</strong>
+              <small>High Pain, High Commitments. Product-market fit signal validated!</small>
+            </div>
+            <!-- Bottom Left: Kill -->
+            <div class="matrix-cell m-kill" id="quadKill">
+              <strong>KILL</strong>
+              <small>Low Pain, Low Commitments. Customer does not value fixing website issues.</small>
+            </div>
+            <!-- Bottom Right: Modify Customer -->
+            <div class="matrix-cell m-modify-cust" id="quadModifyCust">
+              <strong>MODIFY THE CUSTOMER</strong>
+              <small>Low Pain, High Commitments. Target only high-urgency business niches.</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="padding:26px;">
+          <span class="eyebrow">Current Live Verdict</span>
+          <div style="font-size:30px; font-weight:800; margin-bottom:10px;" id="verdictBadge">Calculating...</div>
+          <p style="font-size:14.5px; color:var(--ink); line-height:1.6; margin-bottom:20px;" id="verdictExplanation">Collecting data...</p>
+
+          <div style="background:var(--bg2); padding:16px; border-radius:12px; font-size:13.5px; display:grid; gap:8px;">
+            <div style="display:flex; justify-content:space-between;">
+              <span>Pain Count / 15:</span>
+              <strong id="statPainCount">0/15</strong>
+            </div>
+            <div style="display:flex; justify-content:space-between;">
+              <span>Commitments &divide; Pass Mark:</span>
+              <strong id="statCommitRatio">0</strong>
+            </div>
+            <div style="display:flex; justify-content:space-between;">
+              <span>Pass Mark Threshold:</span>
+              <strong id="statPassMark">8</strong>
+            </div>
+            <div style="display:flex; justify-content:space-between;">
+              <span>Kill Mark Threshold:</span>
+              <strong id="statKillMark">3</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Outreach Channels Table (Slide 7 & 8) -->
+      <div class="card" style="padding:26px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+          <div>
+            <h3 style="font-size:18px;">Outreach Channels (Slide 08)</h3>
+            <p style="font-size:13px; color:var(--mute);">Update daily logs for WhatsApp, LinkedIn, Email, and Local business groups.</p>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Channel</th>
+                <th>Saw It (Reach)</th>
+                <th>Stopped / Asked (Interest)</th>
+                <th>Committed (Bookings)</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="channelsTableBody">
+              <!-- Injected by JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 2: 15-Conversation Tracker (Slide 4 & 5) -->
+    <section id="tab-discovery" class="tab-pane" style="display:none;">
+      <div class="card" style="padding:26px; margin-bottom:24px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:20px;">
+          <div>
+            <span class="eyebrow">04 / Customer Discovery</span>
+            <h2 style="font-size:22px;">15-Conversation Tracker</h2>
+            <p style="font-size:13.5px; color:var(--mute);">
+              Talk about real incidents — not hypothetical interest. Record exact customer words, dates, and what they already tried.
+            </p>
+          </div>
+          <button class="btn primary sm" id="openConvModalBtn">+ Log New Conversation</button>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Customer / Business</th>
+                <th>Logged By</th>
+                <th>Real Incident Problem</th>
+                <th>What Did They Do To Fix It?</th>
+                <th>Exact Customer Quote</th>
+                <th>Pain Counted?</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="conversationsTableBody">
+              <!-- Injected by JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 3: Booked Leads CRM -->
+    <section id="tab-leads" class="tab-pane" style="display:none;">
+      <div class="card" style="padding:26px;">
+        <h2 style="font-size:22px; margin-bottom:6px;">Client Leads & Booking Requests</h2>
+        <p style="font-size:13.5px; color:var(--mute); margin-bottom:20px;">Inquiries received from the client website and audit report pages.</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Client Name</th>
+                <th>Contact</th>
+                <th>Website URL</th>
+                <th>Requested Package</th>
+                <th>Status</th>
+                <th>Notes</th>
+              </tr>
+            </thead>
+            <tbody id="leadsTableBody">
+              <!-- Injected by JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 4: Scanned Audits Log -->
+    <section id="tab-audits" class="tab-pane" style="display:none;">
+      <div class="card" style="padding:26px;">
+        <h2 style="font-size:22px; margin-bottom:6px;">Live Scanned Audits Log</h2>
+        <p style="font-size:13.5px; color:var(--mute); margin-bottom:20px;">Every website scanned by the 15-point automated backend engine.</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Scanned Date</th>
+                <th>Domain</th>
+                <th>Health Score</th>
+                <th>Critical</th>
+                <th>Needs</th>
+                <th>Passed</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="auditsTableBody">
+              <!-- Injected by JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Modal: Add New Discovery Conversation -->
+  <div class="modal-overlay" id="convModal">
+    <div class="modal-card">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+        <h3>Log Customer Discovery (Slide 05)</h3>
+        <button id="closeConvModalBtn" style="border:0; background:none; font-size:20px; cursor:pointer;">&times;</button>
+      </div>
+
+      <form id="convForm">
+        <label>Interviewer Name</label>
+        <select class="f" name="interviewer">
+          <option value="Piyush Yashvant Shinde">Piyush Yashvant Shinde</option>
+          <option value="Shrey Sharma">Shrey Sharma</option>
+          <option value="Netra Nirav Kapadia">Netra Nirav Kapadia</option>
+          <option value="Prachi Mourya">Prachi Mourya</option>
+          <option value="Parth Bhurrak">Parth Bhurrak</option>
+        </select>
+
+        <label>Customer Name & Business *</label>
+        <input type="text" class="f" name="customerName" required placeholder="e.g. Ramesh Joshi (Café Bistro)">
+
+        <label>Business Type</label>
+        <input type="text" class="f" name="businessType" placeholder="e.g. Café, Clinic, Retail Shop">
+
+        <label>When did your website last cause a customer problem? *</label>
+        <textarea class="f" name="incidentProblem" rows="2" required placeholder="Describe the real incident that occurred..."></textarea>
+
+        <label>What did you do to fix it?</label>
+        <textarea class="f" name="currentFix" rows="2" placeholder="What workaround did they try (or did they give up)?"></textarea>
+
+        <label>Capture Proof: Exact Customer Words</label>
+        <textarea class="f" name="exactQuotes" rows="2" placeholder="Exact quotes from the owner..."></textarea>
+
+        <div style="margin-bottom:16px;">
+          <label style="display:flex; align-items:center; gap:8px; cursor:pointer;">
+            <input type="checkbox" name="hadPainAndTriedToFix" value="true" checked>
+            <span>Count toward <strong>Pain Count</strong> (Owner raised problem AND already attempted to fix it)</span>
+          </label>
+        </div>
+
+        <button type="submit" class="btn primary" style="width:100%; justify-content:center;">Save Conversation Log</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="/js/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>WEB PLUS — Your website deserves better.</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fff;--bg2:#f5f7fb;--card:#fff;--ink:#0a1f44;--mute:#5b6b88;--line:#e6eaf2;--blue:#2563eb;--blue2:#1d4ed8;--soft:#eaf1ff;--ok:#12a46a;--okb:#e5f7ef;--warn:#d98a0b;--warnb:#fff3dc;--bad:#e0334c;--badb:#fde8ec;--sh:0 1px 2px rgba(10,31,68,.05),0 12px 32px -12px rgba(10,31,68,.14);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#070f22;--bg2:#0b1630;--card:#0f1c3a;--ink:#eef3ff;--mute:#9fb0cf;--line:#1d2c52;--soft:#13255a;--okb:#0f2f27;--warnb:#33270f;--badb:#35121c;--sh:0 1px 2px rgba(0,0,0,.3),0 12px 32px -12px rgba(0,0,0,.6)}}
+:root[data-theme="dark"]{--bg:#070f22;--bg2:#0b1630;--card:#0f1c3a;--ink:#eef3ff;--mute:#9fb0cf;--line:#1d2c52;--soft:#13255a;--okb:#0f2f27;--warnb:#33270f;--badb:#35121c;--sh:0 1px 2px rgba(0,0,0,.3),0 12px 32px -12px rgba(0,0,0,.6)}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;scroll-padding-top:84px;height:100%}
+body{font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+svg.i{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.wrap{max-width:1160px;margin:0 auto;padding:0 24px}
+section{padding:96px 0}
+.alt{background:var(--bg2)}
+.eyebrow{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:14px}
+h2{font-size:clamp(28px,4vw,42px);line-height:1.15;letter-spacing:-.025em;font-weight:800;max-width:720px}
+.lead{color:var(--mute);font-size:18px;max-width:620px;margin-top:14px}
+.head{margin-bottom:48px}.center{text-align:center}.center h2,.center .lead{margin-left:auto;margin-right:auto}
+.btn{display:inline-flex;align-items:center;gap:8px;font:600 15px Inter,system-ui,sans-serif;padding:13px 22px;border-radius:12px;border:1px solid transparent;cursor:pointer;transition:transform .2s,box-shadow .2s,background .2s;white-space:nowrap}
+.btn:hover{transform:translateY(-2px)}
+.btn:focus-visible,input:focus-visible,textarea:focus-visible,.tab:focus-visible,.chip:focus-visible{outline:3px solid rgba(37,99,235,.45);outline-offset:2px}
+.primary{background:var(--blue);color:#fff;box-shadow:0 8px 20px -6px rgba(37,99,235,.55)}.primary:hover{background:var(--blue2)}
+.ghost{background:var(--card);border-color:var(--line);color:var(--ink)}.ghost:hover{box-shadow:var(--sh)}
+/* nav */
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:49}
+nav{display:flex;align-items:center;justify-content:space-between;height:68px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:-.02em;font-size:18px}
+.mark{width:32px;height:32px;border-radius:9px;background:linear-gradient(135deg,#3b82f6,#1d4ed8);display:grid;place-items:center;color:#fff;font-weight:800;font-size:19px;box-shadow:0 6px 14px -4px rgba(37,99,235,.6)}
+.logo b{color:var(--blue)}
+.links{display:flex;gap:30px;font-size:14.5px;font-weight:500;color:var(--mute)}
+.links a{transition:color .2s}.links a:hover,.links a.on{color:var(--ink)}
+.burger{display:none;background:none;border:0;color:var(--ink);cursor:pointer;padding:8px}
+.mobile{display:none;flex-direction:column;gap:4px;padding:8px 24px 20px;border-top:1px solid var(--line)}
+.mobile a{padding:12px 0;font-weight:500}.mobile.open{display:flex}
+/* hero */
+.hero{padding:72px 0 80px;background:radial-gradient(900px 420px at 80% -10%,rgba(59,130,246,.16),transparent 70%),radial-gradient(600px 300px at 0 0,rgba(37,99,235,.07),transparent 70%)}
+.hgrid{display:grid;grid-template-columns:1.05fr 1fr;gap:56px;align-items:center}
+.pill{display:inline-flex;align-items:center;gap:8px;background:var(--soft);color:var(--blue);font-size:13px;font-weight:600;padding:6px 14px;border-radius:99px;margin-bottom:22px}
+.pill i{width:7px;height:7px;border-radius:50%;background:var(--blue);box-shadow:0 0 0 4px rgba(37,99,235,.2)}
+h1{font-size:clamp(36px,5.2vw,60px);line-height:1.06;letter-spacing:-.035em;font-weight:800}
+h1 span{background:linear-gradient(90deg,#2563eb,#4f8bff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p.lead{font-size:18.5px}
+.urlbox{display:flex;gap:6px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:6px;margin-top:30px;max-width:520px;box-shadow:var(--sh)}
+.urlbox input{flex:1;min-width:0;border:0;background:none;font:500 15px Inter,system-ui,sans-serif;color:var(--ink);padding:0 14px}
+.urlbox input:focus-visible{outline:0}.urlbox:focus-within{border-color:var(--blue)}
+.msg{display:none;max-width:520px;margin-top:12px;padding:14px 16px;border-radius:12px;background:var(--soft);font-size:14px;color:var(--ink);border:1px solid rgba(37,99,235,.25)}
+.msg.show{display:block;animation:up .4s}
+.hbtns{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
+.note{font-size:13px;color:var(--mute);margin-top:16px}
+@keyframes up{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+/* dash mock */
+.dash{background:var(--card);border:1px solid var(--line);border-radius:22px;box-shadow:0 30px 70px -28px rgba(10,31,68,.35);overflow:hidden;position:relative}
+.dtop{display:flex;align-items:center;gap:7px;padding:13px 18px;border-bottom:1px solid var(--line);background:var(--bg2)}
+.dtop i{width:10px;height:10px;border-radius:50%;background:#cfd6e4}
+.dtop span{margin-left:10px;font-size:12px;color:var(--mute);background:var(--card);border:1px solid var(--line);padding:3px 12px;border-radius:8px}
+.sample{font-size:10.5px;font-weight:700;letter-spacing:.08em;color:var(--blue);background:var(--soft);padding:3px 9px;border-radius:99px;text-transform:uppercase;white-space:nowrap}
+.dbody{padding:22px}
+.drow{display:flex;gap:22px;align-items:center}
+.ring{--p:72;width:128px;height:128px;border-radius:50%;background:conic-gradient(var(--blue) calc(var(--p)*1%),var(--line) 0);display:grid;place-items:center;flex:none;transition:--p 1s}
+.ring div{width:100px;height:100px;border-radius:50%;background:var(--card);display:grid;place-items:center;text-align:center;line-height:1.1}
+.ring b{font-size:32px;letter-spacing:-.03em}.ring small{display:block;font-size:11px;color:var(--mute);font-weight:500}
+.mini{display:grid;grid-template-columns:1fr 1fr;gap:10px;flex:1}
+.stat{border:1px solid var(--line);border-radius:14px;padding:12px 14px}
+.stat small{font-size:12px;color:var(--mute);display:block}.stat b{font-size:22px;letter-spacing:-.02em}
+.sugg{margin-top:18px;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.sugg div{display:flex;gap:10px;align-items:center;padding:11px 14px;font-size:13.5px;border-top:1px solid var(--line)}
+.sugg div:first-child{border-top:0;background:var(--bg2);font-weight:600;font-size:12px;color:var(--mute);text-transform:uppercase;letter-spacing:.07em}
+.dot{width:8px;height:8px;border-radius:50%;flex:none}
+.float{position:absolute;right:-6px;bottom:-14px;background:var(--ink);color:var(--bg);font-size:12px;font-weight:600;padding:10px 14px;border-radius:12px;box-shadow:var(--sh);display:flex;gap:8px;align-items:center;animation:fl 4s ease-in-out infinite}
+@keyframes fl{50%{transform:translateY(-6px)}}
+/* cards */
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:28px;box-shadow:var(--sh);transition:transform .25s,border-color .25s}
+.card:hover{transform:translateY(-5px);border-color:rgba(37,99,235,.4)}
+.ico{width:46px;height:46px;border-radius:13px;background:var(--soft);color:var(--blue);display:grid;place-items:center;margin-bottom:18px}
+.card h3{font-size:18px;letter-spacing:-.01em;margin-bottom:6px}.card p{color:var(--mute);font-size:15px}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;position:relative}
+.num{font-size:13px;font-weight:700;color:var(--blue);letter-spacing:.1em;margin-bottom:16px;display:block}
+/* tabs report */
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.tab,.chip{font:600 14px Inter,system-ui,sans-serif;padding:10px 16px;border-radius:99px;border:1px solid var(--line);background:var(--card);color:var(--mute);cursor:pointer;transition:all .2s}
+.tab:hover,.chip:hover{color:var(--ink);border-color:var(--blue)}
+.tab[aria-selected=true],.chip[aria-pressed=true]{background:var(--blue);color:#fff;border-color:var(--blue)}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:22px;box-shadow:var(--sh);overflow:hidden}
+.phead{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:20px 26px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.phead h3{font-size:18px}
+.item{display:flex;align-items:center;gap:16px;padding:18px 26px;border-top:1px solid var(--line);animation:up .35s both}
+.item:first-of-type{border-top:0}
+.item .t{flex:1;font-weight:600}.item .t small{display:block;font-weight:400;color:var(--mute);font-size:13.5px}
+.badge{font-size:12.5px;font-weight:700;padding:5px 12px;border-radius:99px;white-space:nowrap}
+.Good{background:var(--okb);color:var(--ok)}.Needs{background:var(--warnb);color:var(--warn)}.Critical{background:var(--badb);color:var(--bad)}
+.High{background:var(--warnb);color:var(--warn)}.Medium{background:var(--soft);color:var(--blue)}
+.legend{display:flex;gap:18px;font-size:13px;color:var(--mute);padding:14px 26px;border-top:1px solid var(--line);background:var(--bg2);flex-wrap:wrap}
+/* interactive report */
+.rgrid{display:grid;grid-template-columns:320px 1fr;gap:20px}
+.side{padding:26px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:16px}
+.ring.big{width:170px;height:170px}.ring.big div{width:136px;height:136px}.ring.big b{font-size:44px}
+.bar{width:100%;height:8px;background:var(--line);border-radius:9px;overflow:hidden;display:flex}
+.bar i{display:block;height:100%}
+.counts{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;width:100%}
+.counts div{border-radius:12px;padding:10px 4px}.counts b{display:block;font-size:22px}.counts small{font-size:11.5px;font-weight:600}
+table{width:100%;border-collapse:collapse;font-size:14.5px}
+th{text-align:left;font-size:12px;color:var(--mute);letter-spacing:.07em;text-transform:uppercase;padding:12px 26px;background:var(--bg2)}
+td{padding:15px 26px;border-top:1px solid var(--line);vertical-align:top}
+td:first-child{font-weight:600}td:last-child{color:var(--mute)}
+.tw{overflow-x:auto}
+.chips{display:flex;gap:8px;flex-wrap:wrap}.chip{padding:6px 14px;font-size:13px}
+/* pricing */
+.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;align-items:center}
+.plan{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:34px;box-shadow:var(--sh);transition:transform .25s}
+.plan:hover{transform:translateY(-5px)}
+.plan.pop{background:linear-gradient(160deg,#2547d9,#1535a8);color:#fff;border:0;padding:42px 34px;box-shadow:0 30px 60px -24px rgba(37,71,217,.7)}
+.plan h3{font-size:16px;font-weight:600;opacity:.85}.plan .pr{font-size:32px;font-weight:800;letter-spacing:-.03em;margin:10px 0 4px}
+.plan p{font-size:14px;opacity:.7;margin-bottom:22px}
+.plan ul{list-style:none;padding:0;display:grid;gap:12px;margin-bottom:28px;font-size:14.5px}
+.plan li{display:flex;gap:10px}.plan li svg{color:var(--blue);width:18px;height:18px;margin-top:3px}.pop li svg{color:#9cc0ff}
+.plan .btn{width:100%;justify-content:center}.pop .btn{background:#fff;color:#1535a8}
+.tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.08em;background:rgba(255,255,255,.18);padding:4px 10px;border-radius:99px;margin-bottom:10px}
+/* cta + contact */
+.cta{background:linear-gradient(135deg,#0a1f44,#16358a);color:#fff;border-radius:28px;padding:72px 32px;text-align:center;position:relative;overflow:hidden}
+.cta::after{content:"";position:absolute;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(59,130,246,.45),transparent 70%);right:-100px;top:-160px}
+.cta h2{margin:0 auto;color:#fff;position:relative}.cta p{color:#b9c8e8;margin:14px 0 30px;position:relative;font-size:18px}
+.cta .btn{background:#fff;color:#0a1f44;position:relative}
+.cgrid{display:grid;grid-template-columns:1fr 1.1fr;gap:48px;align-items:start}
+form{display:grid;gap:16px;padding:30px}
+label{font-size:13.5px;font-weight:600;display:grid;gap:7px}
+input.f,textarea{font:400 15px Inter,system-ui,sans-serif;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:11px;padding:12px 14px;width:100%;resize:vertical}
+input.f:focus,textarea:focus{border-color:var(--blue)}
+.err{font-weight:500;font-size:12.5px;color:var(--bad);min-height:0;display:none}
+.bad .err{display:block}.bad input.f,.bad textarea{border-color:var(--bad)}
+.ok{display:none;background:var(--okb);color:var(--ok);padding:14px 16px;border-radius:12px;font-weight:600;font-size:14px}
+/* footer */
+footer{border-top:1px solid var(--line);padding:56px 0 40px}
+.fgrid{display:flex;justify-content:space-between;gap:32px;flex-wrap:wrap}
+.fl{display:flex;gap:26px;flex-wrap:wrap;color:var(--mute);font-size:14.5px}.fl a:hover{color:var(--blue)}
+.copy{margin-top:36px;padding-top:24px;border-top:1px solid var(--line);color:var(--mute);font-size:13.5px}
+#top{position:fixed;right:20px;bottom:calc(20px + env(safe-area-inset-bottom,0px));width:46px;height:46px;border-radius:50%;border:0;background:var(--blue);color:#fff;display:grid;place-items:center;cursor:pointer;box-shadow:0 10px 24px -6px rgba(37,99,235,.7);opacity:0;pointer-events:none;transform:translateY(10px);transition:.3s;z-index:40}
+#top.show{opacity:1;pointer-events:auto;transform:none}
+.rv{opacity:0;transform:translateY(18px);transition:opacity .7s,transform .7s}.rv.in{opacity:1;transform:none}
+@media(max-width:980px){.hgrid,.cgrid,.rgrid{grid-template-columns:1fr}.grid4{grid-template-columns:1fr 1fr}.pgrid,.steps{grid-template-columns:1fr}.links,.nav-cta{display:none}.burger{display:block}section{padding:68px 0}.plan.pop{padding:34px}}
+@media(max-width:560px){.grid4{grid-template-columns:1fr}.drow{flex-direction:column;align-items:flex-start}.item,.phead,th,td,form{padding-left:18px;padding-right:18px}.urlbox{flex-direction:column}.urlbox input{padding:12px 14px}.urlbox .btn{justify-content:center}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<header><div class="wrap"><nav aria-label="Main">
+<a href="#home" class="logo"><span class="mark">W</span>WEB <b>PLUS</b></a>
+<div class="links"><a href="#home">Home</a><a href="#how">How It Works</a><a href="#checks">What We Check</a><a href="#sample">Sample Report</a><a href="#contact">Contact</a></div>
+<a href="#contact" class="btn primary nav-cta">Get My Free Website Check</a>
+<button class="burger" id="burger" aria-label="Open menu" aria-expanded="false"><svg class="i" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+</nav></div>
+<div class="mobile" id="mobile"><a href="#home">Home</a><a href="#how">How It Works</a><a href="#checks">What We Check</a><a href="#sample">Sample Report</a><a href="#contact">Contact</a><a href="#contact" class="btn primary" style="justify-content:center">Get My Free Website Check</a></div></header>
+
+<main id="home">
+<section class="hero"><div class="wrap hgrid">
+<div>
+<span class="pill"><i></i>Website health checks for small businesses</span>
+<h1>Your Website Is Your First Impression. <span>Make It Count.</span></h1>
+<p class="lead">Find what’s broken, outdated or confusing on your website. Get a clear 15-point health report with actionable recommendations to improve your online presence.</p>
+<form class="urlbox" id="urlform" novalidate style="padding:6px;display:flex">
+<input type="text" id="url" placeholder="yourbusiness.in" aria-label="Your website URL" autocomplete="url">
+<button class="btn primary" type="submit">Check My Website</button></form>
+<div class="msg" id="urlmsg" role="status"></div>
+<div class="hbtns"><a href="#sample" class="btn ghost">Explore Sample Report <svg class="i" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+<p class="note">Reviews are carried out manually by our team. No automated scan is run on this page.</p>
+</div>
+<div style="position:relative">
+<div class="dash" aria-label="Sample website health dashboard">
+<div class="dtop"><i></i><i></i><i></i><span>sample-bakery.example</span><span class="sample" style="margin-left:auto;border:0">Sample · Demo data</span></div>
+<div class="dbody">
+<div class="drow"><div class="ring" id="heroRing"><div><span><b>72</b><small>Health score</small></span></div></div>
+<div class="mini"><div class="stat"><small>Issues detected</small><b>8</b></div><div class="stat"><small>Critical</small><b style="color:var(--bad)">3</b></div><div class="stat"><small>Improvements</small><b style="color:var(--warn)">5</b></div><div class="stat"><small>Passed</small><b style="color:var(--ok)">7</b></div></div></div>
+<div class="sugg"><div>Improvement suggestions</div>
+<div><i class="dot" style="background:var(--bad)"></i>Fix broken contact link</div>
+<div><i class="dot" style="background:var(--bad)"></i>Update business hours</div>
+<div><i class="dot" style="background:var(--warn)"></i>Add a clearer enquiry button</div></div>
+</div></div>
+<div class="float"><svg class="i" viewBox="0 0 24 24" style="width:16px;height:16px"><path d="M20 6 9 17l-5-5"/></svg>Illustrative sample report</div>
+</div></div></section>
+
+<section class="alt"><div class="wrap">
+<div class="head center rv"><span class="eyebrow">The problem</span><h2>Small Website Problems. Big Business Consequences.</h2></div>
+<div class="grid4" id="problems"></div></div></section>
+
+<section id="how"><div class="wrap">
+<div class="head center rv"><span class="eyebrow">Our solution</span><h2>Meet Your Website’s New Health Check.</h2><p class="lead">We review your site by hand against 15 clear points, then give you a prioritised report you can act on straight away.</p></div>
+<div class="steps">
+<div class="card rv"><span class="num">01</span><h3>Submit Your Website</h3><p>Enter your website URL.</p></div>
+<div class="card rv"><span class="num">02</span><h3>Website Review</h3><p>Review the 15 health-check points.</p></div>
+<div class="card rv"><span class="num">03</span><h3>Get Your Report</h3><p>Receive prioritised issues and suggested improvements.</p></div>
+</div></div></section>
+
+<section id="checks" class="alt"><div class="wrap">
+<div class="head rv"><span class="eyebrow">What we check</span><h2>The 15-Point Website Health Report</h2><p class="lead">Five categories, three checks each. Explore an illustrative sample below.</p></div>
+<div class="tabs" role="tablist" id="tabs"></div>
+<div class="panel rv"><div class="phead"><h3 id="ptitle"></h3><span class="sample">Sample · Illustrative, not a real scan</span></div><div id="items" role="tabpanel"></div>
+<div class="legend"><span><i class="dot" style="background:var(--ok);display:inline-block"></i> Good</span><span><i class="dot" style="background:var(--warn);display:inline-block"></i> Needs Improvement</span><span><i class="dot" style="background:var(--bad);display:inline-block"></i> Critical</span></div></div>
+</div></section>
+
+<section id="sample"><div class="wrap">
+<div class="head rv"><span class="eyebrow">Sample report</span><h2>See what you’ll receive.</h2><p class="lead">An interactive example for a fictional business. All figures are SAMPLE / DEMO data.</p></div>
+<div class="rgrid rv">
+<div class="panel side"><span class="sample">Sample · Demo</span>
+<div class="ring big" id="bigRing"><div><span><b>0</b><small>out of 100</small></span></div></div>
+<div class="bar" aria-hidden="true"><i style="width:20%;background:var(--bad)"></i><i style="width:33.4%;background:var(--warn)"></i><i style="width:46.6%;background:var(--ok)"></i></div>
+<div class="counts"><div style="background:var(--badb);color:var(--bad)"><b>3</b><small>Critical</small></div><div style="background:var(--warnb);color:var(--warn)"><b>5</b><small>Improvements</small></div><div style="background:var(--okb);color:var(--ok)"><b>7</b><small>Passed</small></div></div>
+<p style="font-size:13px;color:var(--mute)">Website Health Score for a fictional café website.</p></div>
+<div class="panel"><div class="phead"><h3>Prioritised issues</h3><div class="chips" id="chips"></div></div>
+<div class="tw"><table><thead><tr><th>Issue</th><th>Priority</th><th>Recommendation</th></tr></thead><tbody id="rows"></tbody></table></div></div>
+</div></div></section>
+
+<section class="alt" id="pricing"><div class="wrap">
+<div class="head center rv"><span class="eyebrow">Services</span><h2>Choose the level of help you need.</h2><p class="lead">Pricing is shared on request, based on the size of your website.</p></div>
+<div class="pgrid">
+<div class="plan rv"><h3>Starter</h3><div class="pr">Price on Request</div><p>A clear picture of what needs fixing.</p><ul id="l1"></ul><a href="#contact" class="btn ghost">Get Started</a></div>
+<div class="plan pop rv"><span class="tag">MOST COMPLETE REVIEW</span><h3>Professional</h3><div class="pr">Price on Request</div><p>A plan you can follow, step by step.</p><ul id="l2"></ul><a href="#contact" class="btn">Get Started</a></div>
+<div class="plan rv"><h3>Correction Package</h3><div class="pr">Price on Request</div><p>We help you put the fixes in place.</p><ul id="l3"></ul><a href="#contact" class="btn ghost">Get Started</a></div>
+</div></div></section>
+
+<section><div class="wrap"><div class="cta rv"><h2>Let’s Make Your Website Work Better.</h2><p>Your website should help your business grow, not hold it back.</p><a href="#contact" class="btn">Get Started with WEB PLUS</a></div></div></section>
+
+<section id="contact" class="alt" style="padding-top:80px"><div class="wrap cgrid">
+<div class="rv"><span class="eyebrow">Contact</span><h2>Get your free website check.</h2><p class="lead">Tell us about your business and website. We’ll reply with next steps.</p></div>
+<div class="panel rv"><form id="cform" novalidate>
+<label>Your name<input class="f" name="name" autocomplete="name"><span class="err">Please enter your name.</span></label>
+<label>Email<input class="f" name="email" type="email" autocomplete="email"><span class="err">Please enter a valid email address.</span></label>
+<label>Website URL<input class="f" name="site" placeholder="yourbusiness.in"><span class="err">Please enter a valid website, e.g. yourbusiness.in</span></label>
+<label>Message<textarea name="msg" rows="4"></textarea><span class="err">Please write a short message (10+ characters).</span></label>
+<button class="btn primary" type="submit" style="justify-content:center">Send Request</button>
+<div class="ok" id="ok" role="status">Thanks! This is a demo form, so nothing has been sent, but your details validated successfully.</div>
+</form></div></div></section>
+</main>
+
+<footer><div class="wrap"><div class="fgrid">
+<div><a href="#home" class="logo"><span class="mark">W</span>WEB <b>PLUS</b></a><p style="color:var(--mute);margin-top:10px;font-size:14.5px">Your website deserves better.</p></div>
+<div class="fl"><a href="#home">Home</a><a href="#pricing">Services</a><a href="#how">How It Works</a><a href="#contact">Contact</a></div></div>
+<div class="copy">Copyright © 2026 WEB PLUS. Sample reports and figures on this site are illustrative demo data.</div></div></footer>
+<button id="top" aria-label="Back to top"><svg class="i" viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+
+<script>
+const P={link:'<path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/>',clock:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',compass:'<circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5z"/>',file:'<path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/>',check:'<path d="M20 6 9 17l-5-5"/>'};
+const ic=n=>`<svg class="i" viewBox="0 0 24 24">${P[n]}</svg>`;
+const $=s=>document.querySelector(s);
+// problems
+[['link','Broken Links','Customers reach dead ends.'],['clock','Outdated Information','Incorrect contact details cost enquiries.'],['compass','Confusing Navigation','Visitors struggle to find what they need.'],['file','Missing Information','Customers leave without understanding your services.']]
+.forEach(([i,t,d])=>$('#problems').insertAdjacentHTML('beforeend',`<div class="card rv"><div class="ico">${ic(i)}</div><h3>${t}</h3><p>${d}</p></div>`));
+// 15-point report
+const G='Good',N='Needs',C='Critical',lab={Good:'Good',Needs:'Needs Improvement',Critical:'Critical'};
+const cats=[['Links & Functionality',[['Broken links','Dead or missing page destinations',C],['Working navigation links','Menu links lead to the right pages',G],['Button functionality','Buttons respond as expected',N]]],
+['Contact Information',[['Phone number accuracy','Number is correct and reachable',G],['Email availability','A working email is easy to find',G],['Address and location information','Address and map details are complete',N]]],
+['Content Quality',[['Updated information','Hours, offers and details are current',C],['Missing essential content','Key pages and facts are present',N],['Clear service descriptions','Visitors understand what you offer',G]]],
+['Navigation & User Experience',[['Easy navigation','Visitors find things in a few clicks',N],['Clear page structure','Logical headings and page flow',G],['Mobile-friendly layout','Readable and usable on phones',G]]],
+['Trust & Conversion',[['Clear calls to action','Next step is obvious on each page',N],['Visible business information','Name, location and hours are easy to see',G],['Trust-building elements','Policies, credentials and proof of work',C]]]];
+function show(k){document.querySelectorAll('.tab').forEach((b,j)=>b.setAttribute('aria-selected',j==k));$('#ptitle').textContent=`${k+1}. ${cats[k][0]}`;
+$('#items').innerHTML=cats[k][1].map(([t,d,s],j)=>`<div class="item" style="animation-delay:${j*70}ms"><div class="t">${t}<small>${d}</small></div><span class="badge ${s}">${lab[s]}</span></div>`).join('')}
+cats.forEach((c,k)=>{const b=document.createElement('button');b.className='tab';b.role='tab';b.textContent=c[0];b.onclick=()=>show(k);$('#tabs').append(b)});show(0);
+// sample table
+const rows=[['Broken contact link','Critical','Update the contact destination.'],['Outdated business hours','Critical','Verify and update operating hours.'],['No trust-building elements','Critical','Add policies, credentials and real work examples.'],['Unclear homepage CTA','Medium','Add a more prominent enquiry button.'],['Incomplete address details','High','Add full address and an embedded map.'],['Missing essential content','High','Add pages for services and frequently asked questions.'],['Slow-to-find menu items','Medium','Simplify the main navigation to fewer links.'],['Inconsistent buttons','Medium','Fix buttons that do not respond on mobile.']];
+let f='All';
+function draw(){$('#rows').innerHTML=rows.filter(r=>f=='All'||r[1]==f).map(r=>`<tr><td>${r[0]}</td><td><span class="badge ${r[1]}">${r[1]}</span></td><td>${r[2]}</td></tr>`).join('');
+document.querySelectorAll('.chip').forEach(c=>c.setAttribute('aria-pressed',c.textContent==f))}
+['All','Critical','High','Medium'].forEach(n=>{const b=document.createElement('button');b.className='chip';b.textContent=n;b.onclick=()=>{f=n;draw()};$('#chips').append(b)});draw();
+// pricing
+const tick='<svg class="i" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>';
+[['#l1',['15-point website health report','Issue identification','Priority classification','Suggested improvements']],['#l2',['Everything in Starter','Detailed recommendations','Improvement roadmap','Priority-based action plan']],['#l3',['Everything in Professional','Assistance with implementing agreed corrections','Follow-up website review']]]
+.forEach(([s,a])=>$(s).innerHTML=a.map(x=>`<li>${tick}<span>${x}</span></li>`).join(''));
+// score ring animation
+function count(el,to){const b=el.querySelector('b');let n=0;const t=setInterval(()=>{n+=2;if(n>=to){n=to;clearInterval(t)}b.textContent=n;el.style.setProperty('--p',n)},18)}
+count($('#heroRing'),72);
+// URL demo
+$('#urlform').onsubmit=e=>{e.preventDefault();const v=$('#url').value.trim(),m=$('#urlmsg');m.classList.add('show');
+if(!/^(https?:\/\/)?([a-z0-9-]+\.)+[a-z]{2,}(\/.*)?$/i.test(v)){m.textContent='Please enter a valid website address, for example yourbusiness.in.';return}
+m.innerHTML='<b>Demo only:</b> no automated scan was run on '+v.replace(/[<>&]/g,'')+'. Our website audit is currently a manual service. <a href="#contact" style="color:var(--blue);font-weight:600">Request your free check →</a>'};
+// contact
+$('#cform').onsubmit=e=>{e.preventDefault();const f=e.target,v=n=>f[n].value.trim();
+const ck={name:v('name').length>1,email:/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v('email')),site:/^(https?:\/\/)?([a-z0-9-]+\.)+[a-z]{2,}(\/.*)?$/i.test(v('site')),msg:v('msg').length>=10};
+let all=true;for(const k in ck){f[k].closest('label').classList.toggle('bad',!ck[k]);if(!ck[k])all=false}
+$('#ok').style.display=all?'block':'none';if(all)f.reset()};
+// nav
+const mb=$('#mobile'),bg=$('#burger');bg.onclick=()=>{const o=mb.classList.toggle('open');bg.setAttribute('aria-expanded',o)};
+mb.querySelectorAll('a').forEach(a=>a.onclick=()=>{mb.classList.remove('open');bg.setAttribute('aria-expanded',false)});
+const secs=['home','how','checks','sample','contact'].map(id=>document.getElementById(id));
+addEventListener('scroll',()=>{$('#top').classList.toggle('show',scrollY>600);let cur='home';secs.forEach(s=>{if(s.getBoundingClientRect().top<140)cur=s.id});document.querySelectorAll('.links a').forEach(a=>a.classList.toggle('on',a.getAttribute('href')=='#'+cur))},{passive:true});
+$('#top').onclick=()=>scrollTo({top:0,behavior:'smooth'});
+// reveal + big ring on view
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');if(e.target.contains($('#bigRing'))&&!window.d){window.d=1;count($('#bigRing'),72)}io.unobserve(e.target)}}),{threshold:.15});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
