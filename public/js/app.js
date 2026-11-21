@@ -294,23 +294,10 @@ function setupAuthHandlers() {
 }
 
 // -------------------------------------------------------------
-// LIVE AUDIT SCANNER (Protected: Requires Login)
+// LIVE AUDIT SCANNER (Open to all visitors, optional login)
 // -------------------------------------------------------------
 
 async function triggerScan(url) {
-  // If not logged in, prompt user with Auth Modal!
-  if (!currentUser) {
-    pendingScanUrl = url;
-    const authModal = document.getElementById('authModal');
-    const authNotice = document.getElementById('authNotice');
-    if (authNotice) {
-      authNotice.style.display = 'block';
-      authNotice.textContent = `Please sign in or create a free account to run your 15-point audit on "${url}".`;
-    }
-    if (authModal) authModal.classList.add('active');
-    return;
-  }
-
   const token = localStorage.getItem('webplus_token');
   const scanBtn = document.getElementById('scanBtn');
   const progressBox = document.getElementById('scanProgressBox');
@@ -344,12 +331,14 @@ async function triggerScan(url) {
   }, 400);
 
   try {
+    const headers = { 'Content-Type': 'application/json' };
+    if (token) {
+      headers['Authorization'] = `Bearer ${token}`;
+    }
+
     const res = await fetch('/api/scan', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
-      },
+      headers,
       body: JSON.stringify({ url })
     });
 
@@ -372,14 +361,7 @@ async function triggerScan(url) {
         if (resultsSec) resultsSec.scrollIntoView({ behavior: 'smooth' });
       }, 500);
     } else {
-      if (data.requiresAuth) {
-        localStorage.removeItem('webplus_token');
-        updateAuthUI(null);
-        pendingScanUrl = url;
-        document.getElementById('authModal').classList.add('active');
-      } else {
-        alert(data.error || 'Failed to scan website.');
-      }
+      alert(data.error || 'Failed to scan website.');
       progressBox.classList.remove('active');
       scanBtn.disabled = false;
       scanBtn.innerHTML = 'Audit Website';

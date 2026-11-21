@@ -21,10 +21,9 @@ Built for **Workshop 3: Idea Validation & Experimentation (Pune Campus · 20 Nov
 
 ## 🚀 Key Features
 
-### 1. User Authentication & Protected Audits (`lib/auth.js`)
-* Built with Node.js standard cryptographic security (`node:crypto` `scryptSync` + 16-byte salt).
-* Supports **Sign Up**, **Sign In**, and **Session Management**.
-* Unauthenticated visitors are prompted with a sleek modal when clicking "Audit Website", which automatically runs their audit once authenticated.
+### 1. Instant Audits (No Sign-In Required)
+* **Open to All Visitors**: Anyone can type any website URL or click a demo preset and immediately get an automated 15-point health check without any login or signup barrier.
+* **Optional User Accounts**: Users who choose to sign in can optionally save, track, and manage their audit history.
 
 ### 2. Automated 15-Point Health Audit Engine (`lib/scanner.js`)
 Crawls any submitted website URL in real time and evaluates 15 points across 5 core pillars:

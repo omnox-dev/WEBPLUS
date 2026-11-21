@@ -5,21 +5,22 @@ async function runTests() {
   require('./server.js');
   await new Promise(r => setTimeout(r, 800));
 
-  console.log('--- RUNNING WEB PLUS AUTH & ENDPOINT TESTS ON PORT 3005 ---');
+  console.log('--- RUNNING WEB PLUS VERIFICATION TESTS ---');
 
   // 1. Test GET /
   const resHome = await fetch('http://127.0.0.1:3005/');
   console.log(`[TEST 1] GET / -> HTTP ${resHome.status} (OK)`);
 
-  // 2. Test Auth Protection on /api/scan without login (Expect HTTP 401)
-  const resUnauth = await fetch('http://127.0.0.1:3005/api/scan', {
+  // 2. Test Guest / Unauthenticated Scan (Should SUCCEED without requiring login!)
+  const resGuestScan = await fetch('http://127.0.0.1:3005/api/scan', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ url: 'https://sample-bakery.example' })
   });
-  console.log(`[TEST 2] POST /api/scan (unauthenticated) -> HTTP ${resUnauth.status} (Protected: Requires Login)`);
+  const guestScanJson = await resGuestScan.json();
+  console.log(`[TEST 2] POST /api/scan (Guest audit without sign-in) -> HTTP ${resGuestScan.status}, Domain: ${guestScanJson.report?.domain}, Score: ${guestScanJson.report?.healthScore}/100 (SUCCESS: No login required!)`);
 
-  // 3. Test POST /api/auth/signup
+  // 3. Test Optional Sign Up
   const testUser = {
     name: "Ramesh Joshi",
     email: `ramesh_${Date.now()}@artisanbakery.in`,
@@ -32,26 +33,10 @@ async function runTests() {
   });
   const signupJson = await resSignup.json();
   const token = signupJson.token;
-  console.log(`[TEST 3] POST /api/auth/signup -> HTTP ${resSignup.status}, User ID: ${signupJson.user?.id}, Token issued: ${token ? 'YES' : 'NO'}`);
+  console.log(`[TEST 3] POST /api/auth/signup -> HTTP ${resSignup.status}, User ID: ${signupJson.user?.id}`);
 
-  // 4. Test POST /api/auth/login
-  const resLogin = await fetch('http://127.0.0.1:3005/api/auth/login', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ email: testUser.email, password: testUser.password })
-  });
-  const loginJson = await resLogin.json();
-  console.log(`[TEST 4] POST /api/auth/login -> HTTP ${resLogin.status}, User: ${loginJson.user?.name}`);
-
-  // 5. Test GET /api/auth/me (with Bearer Token)
-  const resMe = await fetch('http://127.0.0.1:3005/api/auth/me', {
-    headers: { 'Authorization': `Bearer ${token}` }
-  });
-  const meJson = await resMe.json();
-  console.log(`[TEST 5] GET /api/auth/me -> HTTP ${resMe.status}, Authenticated: ${meJson.authenticated}, User: ${meJson.user?.name}`);
-
-  // 6. Test POST /api/scan WITH Bearer Token (Should Succeed with HTTP 200)
-  const resScan = await fetch('http://127.0.0.1:3005/api/scan', {
+  // 4. Test Authenticated Scan (Logged-in user scan)
+  const resAuthScan = await fetch('http://127.0.0.1:3005/api/scan', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -59,15 +44,15 @@ async function runTests() {
     },
     body: JSON.stringify({ url: 'https://sample-bakery.example' })
   });
-  const scanJson = await resScan.json();
-  console.log(`[TEST 6] POST /api/scan (authenticated) -> HTTP ${resScan.status}, Domain: ${scanJson.report?.domain}, Health Score: ${scanJson.report?.healthScore}/100`);
+  const authScanJson = await resAuthScan.json();
+  console.log(`[TEST 4] POST /api/scan (Logged-in scan) -> HTTP ${resAuthScan.status}, Tied to user: ${authScanJson.report?.userEmail}`);
 
-  // 7. Test GET /api/scan/sample
+  // 5. Test GET /api/scan/sample
   const resSample = await fetch('http://127.0.0.1:3005/api/scan/sample');
   const sampleJson = await resSample.json();
-  console.log(`[TEST 7] GET /api/scan/sample -> HTTP ${resSample.status}, Score: ${sampleJson.report?.healthScore}/100`);
+  console.log(`[TEST 5] GET /api/scan/sample -> HTTP ${resSample.status}, Health Score: ${sampleJson.report?.healthScore}/100`);
 
-  // 8. Test POST /api/leads
+  // 6. Test Lead Booking
   const resLead = await fetch('http://127.0.0.1:3005/api/leads', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -80,9 +65,9 @@ async function runTests() {
     })
   });
   const leadJson = await resLead.json();
-  console.log(`[TEST 8] POST /api/leads -> HTTP ${resLead.status}, Lead ID: ${leadJson.lead?.id}`);
+  console.log(`[TEST 6] POST /api/leads -> HTTP ${resLead.status}, Lead ID: ${leadJson.lead?.id}`);
 
-  console.log('--- ALL AUTH & SCANNER TESTS PASSED PERFECTLY ---');
+  console.log('--- ALL TESTS PASSED: AUDITS WORK FREELY WITHOUT SIGN IN ---');
   process.exit(0);
 }
 

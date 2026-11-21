@@ -94,18 +94,19 @@ app.post('/api/auth/logout', (req, res) => {
 // 1. SCANNING & AUDIT ENDPOINTS
 // -----------------------------------------------------------------
 
-// POST /api/scan - Trigger live website health audit (Protected: Requires Login)
-app.post('/api/scan', requireAuth, async (req, res) => {
+// POST /api/scan - Trigger live website health audit (Open to all visitors, optional login)
+app.post('/api/scan', optionalAuth, async (req, res) => {
   try {
     const { url } = req.body;
     if (!url || typeof url !== 'string' || url.trim().length === 0) {
       return res.status(400).json({ error: 'Please provide a valid website URL.' });
     }
 
-    console.log(`[AUDIT] User ${req.user.email} started 15-Point Scan for: ${url}`);
+    const userLabel = req.user ? req.user.email : 'Guest visitor';
+    console.log(`[AUDIT] ${userLabel} started 15-Point Scan for: ${url}`);
     const auditResult = await run15PointAudit(url);
-    auditResult.userId = req.user.userId;
-    auditResult.userEmail = req.user.email;
+    auditResult.userId = req.user ? req.user.userId : null;
+    auditResult.userEmail = req.user ? req.user.email : null;
 
     // Save audit to Database (MongoDB / persistent engine)
     await dbAdapter.saveAudit(auditResult);
@@ -383,4 +384,10 @@ function startServer(portToUse) {
   return srv;
 }
 
-startServer(PORT);
+// Only start the HTTP listener if run directly (local / standard server)
+// On serverless platforms like Vercel, the app is exported directly
+if (process.env.NODE_ENV !== 'test' && !process.env.VERCEL) {
+  startServer(PORT);
+}
+
+module.exports = app;

@@ -111,3 +111,27 @@ If you encounter permission issues:
 ```bash
 chmod +x server.js
 ```
+
+
+
+
+
+
+
+# 1. Initialize git
+git init
+
+# 2. Stage all project files (your .env and node_modules are automatically ignored)
+git add .
+
+# 3. Create your first commit
+git commit -m "Initial commit: WEB PLUS full project with MongoDB Atlas, Auth and 15-Point Scanner"
+
+# 4. Set the branch name to main
+git branch -M main
+
+# 5. Connect to your GitHub repository (replace with your actual GitHub repo URL)
+git remote add origin https://github.com/omnox-dev/WEBPLUS
+
+# 6. Push code to GitHub
+git push -u origin main
